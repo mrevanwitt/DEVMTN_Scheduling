@@ -44,7 +44,7 @@ passport.deserializeUser(function (obj, cb) {
 });
 app.use(passport.initialize());
 app.use(passport.session());
-let google_calendar = new gcal.GoogleCalendar();
+
 passport.use(new GoogleStrategy({
 		clientID: config.consumer_key,
 		clientSecret: config.consumer_secret,
@@ -81,7 +81,7 @@ app.get('/auth/google/callback',
 
 app.get('/event', (req, res) => {
 	let event = {
-		'summary': 'Donovan sux cox',
+		'summary': 'event summary',
 		'location': '560 S 100 W St, Provo, UT 84601',
 		'description': 'I made an event baby.',
 		'start': {
@@ -100,7 +100,7 @@ app.get('/event', (req, res) => {
 				'email': 'donovan.hiland@gmail.com'
 			},
 			{
-				'email': 'sebmernst@gmail.com'
+				'email': 'djatbusiness@gmail.com'
 			},
   ],
 		'reminders': {
@@ -120,7 +120,7 @@ app.get('/event', (req, res) => {
 
 	calendar.events.insert({
     auth: oauth2Client,
-		calendarId: 'fcsdvkpqktb7qieirpun9glnvo@group.calendar.google.com',
+		calendarId: 'e7me8d6vnifltbnvtfaaqll9ls@group.calendar.google.com',
 		resource: event,
     sendNotifications: true
 	}, function (err, event) {
