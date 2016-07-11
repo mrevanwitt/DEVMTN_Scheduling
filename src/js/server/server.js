@@ -93,7 +93,7 @@ app.get('/event', (req, res) => {
 			'timeZone': 'America/Los_Angeles',
 		},
 		'recurrence': [
-    'RRULE:FREQ=WEEKLY;COUNT=1'
+    // 'RRULE:FREQ=WEEKLY;COUNT=1'
   ],
 		'attendees': [
 			{
