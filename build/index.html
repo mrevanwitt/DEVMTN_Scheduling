@@ -1,15 +1,52 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Gulp App Environment</title>
-    <link rel="stylesheet" href="./assets/styles/master.min.css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="./assets/styles/reset.css" media="screen" charset="utf-8">
-    <script defer src="./assets/js/bundle.js" charset="utf-8"></script>
-  </head>
-  <body>
-    <div class="welcome">
-      <h1>Gulp Setup Complete!</h1>
-    </div>
-  </body>
+<html ng-app="schedulingproto">
+    <head>
+        <meta charset="utf-8">
+        <title>DM Calendar Prototype</title>
+        <link rel="stylesheet" href="./assets/styles/reset.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="./assets/styles/master.min.css" media="screen" charset="utf-8">
+    </head>
+    <body ng-controller="scheduleCtrl">
+        <header>
+            <h2>DevMountain Calendar Prototype</h2>
+        </header>
+        <section>
+          Cohort Start Date:
+          <input type="text" name="name" placeholder="08/04/2016" ng-model="date">
+          <button type="button" name="button" ng-click="populateCalendar(date)">submit</button>
+        </section>
+        <!-- <section class="event-fields">
+      <div class="input">
+        Summary:
+        <input type="text" name="name" value="">
+      </div>
+      <div class="input">
+        Description:
+        <input type="text" name="name" value="">
+      </div>
+      <div class="input">
+        Location:
+        <input type="text" name="name" value="">
+      </div>
+      <div class="input">
+        Start Date/Time:
+        <input type="text" name="name" value="">
+      </div>
+      <div class="input">
+        End Date/Time:
+        <input type="text" name="name" value="">
+      </div>
+      <div class="input">
+        Attendees:
+        <input type="text" name="name" value="">
+      </div>
+      <button type="button" name="button">This all works !</button>
+    </section> -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.js" charset="utf-8"></script>
+        <script src="./assets/js/app.js" charset="utf-8"></script>
+        <script src="./assets/js/scheduleCtrl.js" charset="utf-8"></script>
+        <script src="./assets/js/scheduleSrvc.js" charset="utf-8"></script>
+    </body>
 </html>
