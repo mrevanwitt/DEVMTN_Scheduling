@@ -12,7 +12,7 @@ import livereload from 'gulp-livereload';
 
 const dirs = {
   src: './src',
-  dest: './build/assets'
+  dest: './build/www'
 };
 
 const sassPaths = {
@@ -20,9 +20,9 @@ const sassPaths = {
   dest: `${dirs.dest}/styles/`
 };
 
-const jsPaths = {
-  src: `${dirs.src}/js/client/**/*.js`,
-  dest: `${dirs.dest}/js`
+const scriptsPaths = {
+  src: `${dirs.src}/scripts/client/**/*.scripts`,
+  dest: `${dirs.dest}/scripts`
 };
 
 gulp.task('default', ['babel', 'sass', 'watch']);
@@ -63,18 +63,18 @@ gulp.task('sass', function(done) {
 });
 
 gulp.task("babel", function() {
-  return gulp.src(jsPaths.src)
+  return gulp.src(scriptsPaths.src)
     .pipe(plumber())
     .pipe(babel({
       presets: ['es2015']
     }))
-    // .pipe(concat('bundle.js'))
+    // .pipe(concat('bundle.scripts'))
     // .pipe(uglify())
-    .pipe(gulp.dest(jsPaths.dest));
+    .pipe(gulp.dest(scriptsPaths.dest));
 });
 
 gulp.task('watch', function() {
   livereload.listen();
-  gulp.watch(jsPaths.src, ['babel']);
+  gulp.watch(scriptsPaths.src, ['babel']);
   gulp.watch(sassPaths.src, ['sass']);
 });
