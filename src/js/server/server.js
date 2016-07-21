@@ -79,7 +79,7 @@ app.get('/auth/google/callback',
 		res.redirect('/');
 	});
 
-app.get('/event', (req, res) => {
+app.post('/event', (req, res, next) => {
 	let event = {
 		'summary': 'event summary',
 		'location': '560 S 100 W St, Provo, UT 84601',
@@ -89,8 +89,8 @@ app.get('/event', (req, res) => {
 			'timeZone': 'America/Los_Angeles',
 		},
 		'end': {
-			'dateTime': '2016-07-08T17:00:00-07:00',
-			'timeZone': 'America/Los_Angeles',
+			'dateTime': '2016-07-07T17:00:00-07:00',
+			'timeZone': 'America/Denver',
 		},
 		'recurrence': [
     // 'RRULE:FREQ=WEEKLY;COUNT=1'
@@ -112,7 +112,7 @@ app.get('/event', (req, res) => {
 				},
 				{
 					'method': 'popup',
-					'minutes': 10
+					'minutes': 30
 				},
     ],
 		},
