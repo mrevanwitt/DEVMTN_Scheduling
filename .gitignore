@@ -1,4 +1,4 @@
 node_modules
-build/assets/js
-build/assets/**/*.min.css
+build/www/scripts
+build/www/**/*.min.css
 config.js
