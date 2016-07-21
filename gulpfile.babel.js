@@ -73,18 +73,6 @@ gulp.task("babel", function() {
     .pipe(gulp.dest(jsPaths.dest));
 });
 
-// gulp.task('autoprefixer', function () {
-//     var postcss      = require('gulp-postcss');
-//     var sourcemaps   = require('gulp-sourcemaps');
-//     var autoprefixer = require('autoprefixer');
-//
-//     return gulp.src('./www/min_css/*.css')
-//         .pipe(sourcemaps.init())
-//         .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
-//         .pipe(sourcemaps.write('.'))
-//         .pipe(gulp.dest('./www/css'));
-// });
-
 gulp.task('watch', function() {
   livereload.listen();
   gulp.watch(jsPaths.src, ['babel']);

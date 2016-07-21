@@ -3,10 +3,6 @@ angular.module('schedulingproto')
 
     //need to create an collection of days representing the days scheduled per cohort.
     // enter a start date, and have a list of days populate.
-    $scope.days = [];
-    $scope.populateCalendar = (date) => {
-      while(days.length < 46)
-    }
 
 
 
