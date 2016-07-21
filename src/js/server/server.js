@@ -20,12 +20,12 @@ google.options( {
 
 //App Init
 const app = express();
-const port = 9000;
+const port = 9001;
 
 //Middleware
 app.use(bodyParser.json());
 var corsOptions = {
-	origin: 'http://localhost:9000'
+	origin: 'http://localhost:9001'
 }
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/../../../build')); //serve all of our static front-end files from our server.
@@ -48,7 +48,7 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
 		clientID: config.consumer_key,
 		clientSecret: config.consumer_secret,
-		callbackURL: "http://localhost:9000/auth/google/callback",
+		callbackURL: "http://localhost:" + port + "/auth/google/callback",
 		scope: ['openid', 'email', 'https://www.googleapis.com/auth/calendar']
 	},
 	(accessToken, refreshToken, profile, done) => {
@@ -85,7 +85,7 @@ app.post('/event', (req, res, next) => {
 		'location': '560 S 100 W St, Provo, UT 84601',
 		'description': 'I made an event baby.',
 		'start': {
-			'dateTime': '2016-07-07T14:00:00-07:00',
+			'dateTime': '2016-07-08T14:00:00-07:00',
 			'timeZone': 'America/Los_Angeles',
 		},
 		'end': {
@@ -93,7 +93,7 @@ app.post('/event', (req, res, next) => {
 			'timeZone': 'America/Denver',
 		},
 		'recurrence': [
-    'RRULE:FREQ=WEEKLY;COUNT=1'
+    // 'RRULE:FREQ=WEEKLY;COUNT=1'
   ],
 		'attendees': [
 			{
@@ -120,7 +120,7 @@ app.post('/event', (req, res, next) => {
 
 	calendar.events.insert({
     auth: oauth2Client,
-		calendarId: 'e7me8d6vnifltbnvtfaaqll9ls@group.calendar.google.com',
+		calendarId: 'primary',
 		resource: event,
     sendNotifications: true
 	}, function (err, event) {
