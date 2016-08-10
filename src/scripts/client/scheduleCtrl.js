@@ -4,8 +4,6 @@ angular.module('schedulingproto')
     //need to create an collection of days representing the days scheduled per cohort.
     // enter a start date, and have a list of days populate.
 
-
-
     // let event = {
   	// 	'summary': 'event summary',
   	// 	'location': '560 S 100 W St, Provo, UT 84601',

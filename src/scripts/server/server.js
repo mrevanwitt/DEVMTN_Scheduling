@@ -7,16 +7,14 @@ import gcal from 'google-calendar';
 import util from 'util';
 import config from './config';
 
-const GoogleStrategy = require( 'passport-google-oauth20' ).Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 import google from 'googleapis';
 const calendar = google.calendar('v3');
 
 let OAuth2 = google.auth.OAuth2;
-let oauth2Client = new OAuth2( config.consumer_key, config.consumer_secret, '/auth/google/callback' );
-google.options( {
-	auth: oauth2Client
-} ); // set auth as a global default
+let oauth2Client = new OAuth2(config.consumer_key, config.consumer_secret, '/auth/google/callback');
+google.options({auth: oauth2Client}); // set auth as a global default
 
 //App Init
 const app = express();
@@ -29,55 +27,41 @@ var corsOptions = {
 }
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/../../../build')); //serve all of our static front-end files from our server.
-app.use(session({
-	secret: config.session_secret,
-	resave: true,
-	saveUninitialized: true
-}));
+app.use(session({secret: config.session_secret, resave: true, saveUninitialized: true}));
 
 //Passport
-passport.serializeUser(function (user, cb) {
+passport.serializeUser(function(user, cb) {
 	cb(null, user);
 });
-passport.deserializeUser(function (obj, cb) {
+passport.deserializeUser(function(obj, cb) {
 	cb(null, obj);
 });
 app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new GoogleStrategy({
-		clientID: config.consumer_key,
-		clientSecret: config.consumer_secret,
-		callbackURL: "http://localhost:" + port + "/auth/google/callback",
-		scope: ['openid', 'email', 'https://www.googleapis.com/auth/calendar']
-	},
-	(accessToken, refreshToken, profile, done) => {
+	clientID: config.consumer_key,
+	clientSecret: config.consumer_secret,
+	callbackURL: "http://localhost:" + port + "/auth/google/callback",
+	scope: ['openid', 'email', 'https://www.googleapis.com/auth/calendar']
+}, (accessToken, refreshToken, profile, done) => {
 
-		console.log("Auth Success. Celebration is in order.");
+	console.log("Auth Success. Celebration is in order.");
 
-    console.log("Access Token: ", accessToken);
+	console.log("Access Token: ", accessToken);
 
-    oauth2Client.setCredentials({
-      access_token: accessToken,
-      refresh_token: refreshToken
-    });
+	oauth2Client.setCredentials({access_token: accessToken, refresh_token: refreshToken});
 
-		return done(null, profile);
-	}
-));
+	return done(null, profile);
+}));
 
 //Auth Routing
-app.get('/auth/google',
-	passport.authenticate('google'));
+app.get('/auth/google', passport.authenticate('google'));
 
-app.get('/auth/google/callback',
-	passport.authenticate('google', {
-		failureRedirect: '/'
-	}),
-	(req, res) => {
-		// Successful authentication, redirect home.
-		res.redirect('/');
-	});
+app.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/'}), (req, res) => {
+	// Successful authentication, redirect home.
+	res.redirect('/');
+});
 
 app.post('/event', (req, res, next) => {
 	let event = {
@@ -86,62 +70,60 @@ app.post('/event', (req, res, next) => {
 		'description': 'I made an event baby.',
 		'start': {
 			'dateTime': '2016-07-08T14:00:00-07:00',
-			'timeZone': 'America/Los_Angeles',
+			'timeZone': 'America/Los_Angeles'
 		},
 		'end': {
 			'dateTime': '2016-07-07T17:00:00-07:00',
-			'timeZone': 'America/Denver',
+			'timeZone': 'America/Denver'
 		},
 		'recurrence': [
-    // 'RRULE:FREQ=WEEKLY;COUNT=1'
-  ],
+			// 'RRULE:FREQ=WEEKLY;COUNT=1'
+		],
 		'attendees': [
 			{
 				'email': 'donovan.hiland@gmail.com'
-			},
-			{
+			}, {
 				'email': 'djatbusiness@gmail.com'
-			},
-  ],
+			}
+		],
 		'reminders': {
 			'useDefault': false,
 			'overrides': [
 				{
 					'method': 'email',
 					'minutes': 24 * 60
-				},
-				{
+				}, {
 					'method': 'popup',
 					'minutes': 30
-				},
-    ],
-		},
+				}
+			]
+		}
 	};
 
 	calendar.events.insert({
-    auth: oauth2Client,
+		auth: oauth2Client,
 		calendarId: 'primary',
 		resource: event,
-    sendNotifications: true
-	}, function (err, event) {
+		sendNotifications: true
+	}, function(err, event) {
 		if (err) {
 			console.log('There was an error contacting the Calendar service: ' + err);
 			return;
 		}
 		console.log('Event created: %s', event.htmlLink);
-    res.redirect('/');
+		res.redirect('/');
 	});
 });
 
 app.get('/calendar', (req, res) => {
 	let newCalendar = {
-    summary: 'DevMountain Cohort Schedule 3'
+		summary: 'DevMountain Cohort Schedule 3'
 	};
 
 	calendar.calendars.insert({
-    auth: oauth2Client,
-		resource: newCalendar,
-	}, function (err, newCalendar) {
+		auth: oauth2Client,
+		resource: newCalendar
+	}, function(err, newCalendar) {
 		if (err) {
 			console.log('There was an error contacting the Calendar service: ' + err);
 			return;
