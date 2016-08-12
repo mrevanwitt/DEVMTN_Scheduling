@@ -1,4 +1,3 @@
-angular.module('schedulingproto')
-  .service('scheduleSrvc', function($http) {
-
-  });
+angular
+	.module('schedulingproto')
+	.service('scheduleSrvc', function($http) {});

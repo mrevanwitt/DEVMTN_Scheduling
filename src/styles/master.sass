@@ -1,1 +1,213 @@
+@import '_variables'
+@import "../../node_modules/sass-font-face/_font-face.scss"
 
+$font-regular: 'Proxima Nova'
+
+@include font-face($font-regular, '../src/font/', 'proximanova-webfont', 'ProximaNova')
+
+body
+  font-family: $font-regular
+  font-size: $smed
+  background: #2a2a2b
+  color: #fff
+  // text-align: center
+.top-section
+  // text-align: center
+  // background: red
+  margin: 0 auto
+  margin-top: $huge
+  width: 91vw
+  position: relative
+#logo
+  width: 25vw
+  margin-left: $med
+.dropdowns
+  position: absolute
+  right: 0
+  top: 50%
+  transform: translateY(-50%)
+.week-header
+  justify-content: center
+  display: flex
+  flex-wrap: nowrap
+  max-width: 91vw
+  margin: 0 auto
+  // box-shadow: 0 10px 5px 0 rgba(0, 0, 0, 0.3)
+  z-index: 1
+  position: relative
+.week-number
+  width: 13vw
+  height: 30px
+  display: flex
+  justify-content: space-around
+  background: $devBlue
+  margin-top: $huge
+  padding: $tiny
+  transition-property: background-color, color
+  transition-duration: 0.2s
+  h1
+    color: white
+    font-size: 2rem
+    font-weight: lighter
+    float: left
+.week-number:nth-child(2n+1)
+  // background: $green
+.week-number:hover
+  background: $devBlue_l
+  cursor: default
+.day-header
+  justify-content: center
+  display: flex
+  flex-wrap: nowrap
+  max-width: 91vw
+  margin: 0 auto
+  box-shadow: 0 10px 5px 0 rgba(0, 0, 0, 0.1)
+  z-index: 1
+  position: relative
+.day-number
+  width: 13vw
+  height: 20px
+  background: $primaryDark_l
+  color: $gray
+  display: flex
+  justify-content: space-around
+  flex-direction: column
+  cursor: default
+  text-align: center
+.week
+  justify-content: center
+  display: flex
+  flex-wrap: nowrap
+.day
+  width: 13vw
+  height: 13vw
+  background: $primaryDark
+  text-align: center
+  position: relative
+  cursor: default
+  transition-property: background-color, color
+  transition-duration: 0.3s
+  #header
+    color: $gray
+    font-size: $small
+    margin-top: $large
+    transition-property: background-color, color
+    transition-duration: 0.3s
+  #instructor-icon
+    width: 2vw
+    align-self: center
+    position: absolute
+    top: 40%
+    transform: translate(-50%, -40%)
+  .instructors
+    // border: 1px solid red
+    background: #fff
+    width: 90%
+    height: 5vw
+    margin-top: $med
+    margin-bottom: $tiny
+    position: absolute
+    bottom: 0
+    left: 50%
+    transform: translateX(-50%)
+    display: flex
+    flex-direction: column
+    justify-content: center
+    border-radius: $tiny
+    transition: 0.2s linear all
+    opacity: 1
+    #instructor
+      color: black
+      font-size: $small
+      margin-bottom: $tiny
+      margin-top: $tiny
+    #instructor:hover
+      color: $green2
+      cursor: default
+  .instructors.ng-hide
+    opacity: 0
+  #description
+    position: absolute
+    bottom: $large
+    left: 50%
+    transform: translateX(-50%)
+    // white-space: nowrap
+    font-size: $small
+    overflow: hidden
+.day:hover
+  background: $devBlue !important
+  #header
+    color: #fff !important
+.day:nth-child(2n+2)
+  background: #272732
+.arrow-up
+  width: 0
+  height: 0
+  border-left: 1vw solid transparent
+  border-right: 1vw solid transparent
+  border-bottom: 1vw solid #fff
+  position: absolute
+  top: -0.5vw
+  left: 50%
+  transform: translateX(-50%)
+
+.modal
+  width: 91vw
+  height: 40vh
+  background: #fff
+  margin-right: auto
+  margin-left: auto
+
+/* class dropdown */
+.class-dropdown
+  position: relative
+  display: inline-block
+  vertical-align: middle
+  // float: right
+
+.class-dropdown select
+  background-color: $devBlue
+  color: #fff
+  font-size: inherit
+  padding: .5em
+  padding-right: 2.5em
+  border: 0
+  margin: 0
+  border-radius: 3px
+  text-indent: 0.01px
+  text-overflow: ''
+  -webkit-appearance: button
+
+.class-dropdown::before,
+.class-dropdown::after
+  content: ""
+  position: absolute
+  pointer-events: none
+
+.class-dropdown::after /*  class dropdown arrow */
+  content: "\25BC"
+  height: 1em
+  font-size: .625em
+  line-height: 1
+  right: 1.2em
+  top: 50%
+  margin-top: -.5em
+
+.class-dropdown::before /*  class dropdown arrow cover */
+  width: 2em
+  right: 0
+  top: 0
+  bottom: 0
+  border-radius: 0 3px 3px 0
+
+.class-dropdown select[disabled]
+  color: rgba(0,0,0,.3)
+
+.class-dropdown select[disabled]::after
+  color: rgba(0,0,0,.1)
+
+.class-dropdown::before
+  background-color: rgba(0,0,0,.15)
+
+.class-dropdown::after
+  color: rgba(0,0,0,.4)

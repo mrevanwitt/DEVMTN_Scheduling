@@ -8,11 +8,16 @@
     </head>
     <body ng-controller="scheduleCtrl">
 
+        <ui-view></ui-view>
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.min.js" charset="utf-8"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.js" charset="utf-8"></script>
 
         <script src="./www/scripts/app.js" charset="utf-8"></script>
         <script src="./www/scripts/scheduleCtrl.js" charset="utf-8"></script>
         <script src="./www/scripts/scheduleSrvc.js" charset="utf-8"></script>
+        <script src="./www/scripts/components/convertToNumber.js" charset="utf-8"></script>
     </body>
 </html>
