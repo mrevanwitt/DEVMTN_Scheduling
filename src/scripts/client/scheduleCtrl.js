@@ -30,10 +30,8 @@ angular
 					description: 'Intermediate Javascript.'
 				},
 				{
-					topic: 'Weekend'
 				},
 				{
-					topic: 'Weekend'
 				}
 			],
 			[
@@ -63,10 +61,8 @@ angular
 					description: 'Intro to SQL.'
 				},
 				{
-					topic: 'Weekend2'
 				},
 				{
-					topic: 'Weekend2'
 				}
 			],
 			[

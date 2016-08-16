@@ -93,12 +93,13 @@ body
     margin-top: $large
     transition-property: background-color, color
     transition-duration: 0.3s
-  #instructor-icon
+  #instructor-icon, #plus-icon
     width: 2vw
     align-self: center
     position: absolute
     top: 40%
     transform: translate(-50%, -40%)
+    transition: 0.1s linear all
   .instructors
     // border: 1px solid red
     background: #fff
@@ -138,6 +139,10 @@ body
   background: $devBlue !important
   #header
     color: #fff !important
+  #plus-icon
+    width: 2.6vw
+  #instructor-icon
+    width: 2.6vw
 .day:nth-child(2n+2)
   background: #272732
 .arrow-up
@@ -151,19 +156,33 @@ body
   left: 50%
   transform: translateX(-50%)
 
+// .modal
+//   width: 91vw
+//   height: 40vh
+//   background: #fff
+//   margin-right: auto
+//   margin-left: auto
 .modal
-  width: 91vw
-  height: 40vh
+  width: 22vw
+  height: 22vw
+  position: relative
   background: #fff
   margin-right: auto
   margin-left: auto
+  margin-top: $med
+  border-radius: $tiny
 
 /* class dropdown */
 .class-dropdown
   position: relative
   display: inline-block
   vertical-align: middle
-  // float: right
+
+.class-dropdown select:hover
+  background-color: $devBlue_l
+
+.class-dropdown select:focus
+  outline: 0
 
 .class-dropdown select
   background-color: $devBlue
