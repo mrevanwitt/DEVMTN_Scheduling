@@ -100,19 +100,21 @@ app.post('/event', (req, res, next) => {
 		}
 	};
 
-	calendar.events.insert({
-		auth: oauth2Client,
-		calendarId: 'primary',
-		resource: event,
-		sendNotifications: true
-	}, function(err, event) {
-		if (err) {
-			console.log('There was an error contacting the Calendar service: ' + err);
-			return;
-		}
-		console.log('Event created: %s', event.htmlLink);
-		res.redirect('/');
-	});
+	calendar
+		.events
+		.insert({
+			auth: oauth2Client,
+			calendarId: 'primary',
+			resource: event,
+			sendNotifications: true
+		}, function(err, event) {
+			if (err) {
+				console.log('There was an error contacting the Calendar service: ' + err);
+				return;
+			}
+			console.log('Event created: %s', event.htmlLink);
+			res.redirect('/');
+		});
 });
 
 app.get('/calendar', (req, res) => {
@@ -120,16 +122,18 @@ app.get('/calendar', (req, res) => {
 		summary: 'DevMountain Cohort Schedule 3'
 	};
 
-	calendar.calendars.insert({
-		auth: oauth2Client,
-		resource: newCalendar
-	}, function(err, newCalendar) {
-		if (err) {
-			console.log('There was an error contacting the Calendar service: ' + err);
-			return;
-		}
-		console.log('Calendar created: %s', util.inspect(newCalendar));
-	});
+	calendar
+		.calendars
+		.insert({
+			auth: oauth2Client,
+			resource: newCalendar
+		}, function(err, newCalendar) {
+			if (err) {
+				console.log('There was an error contacting the Calendar service: ' + err);
+				return;
+			}
+			console.log('Calendar created: %s', util.inspect(newCalendar));
+		});
 });
 
 //Listen

@@ -1,0 +1,67 @@
+<section class="top-section">
+
+    <img id="logo" src="./www/src/img/devmtnlogo.png" alt=""/>
+
+    <!-- Dropdown Start -->
+
+    <div class="dropdowns">
+        <span class="class-dropdown">
+            <select ng-model="selectedClassType">
+                <option value="web">Web Immersive</option>
+                <option value="web_ah">Web After Hours</option>
+                <option value="ios">iOS After Hours</option>
+                <option value="uxui">UX / UI After Hours</option>
+            </select>
+        </span>
+
+        <span class="class-dropdown">
+            <select ng-model="numberOfWeeks" ngChange="weekRange(numberOfWeeks)" convert-to-number>
+                <option value="16">16 Weeks</option>
+                <option value="12">12 Weeks</option>
+                <option value="9">9 Weeks</option>
+            </select>
+        </span>
+    </div>
+
+    <!-- Dropdown End -->
+
+</section>
+
+<!-- Week Header Start -->
+
+<div class="week-header">
+    <div class="week-number" ng-repeat="weekNumber in weekRange(numberOfWeeks) track by $index" ng-click="changeWeek($index)">
+        <h1>{{$index + 1}}</h1>
+    </div>
+</div>
+<div class="day-header">
+    <div class="day-number" ng-repeat="day in weekdays track by $index">
+        <h1>{{day}}</h1>
+    </div>
+</div>
+
+<!-- Week Header End -->
+
+<!-- Week Bar Start -->
+
+<div class="week">
+    <div class="day" ng-repeat="day in week track by $index">
+        <h1 id="header">{{day.topic}}</h1>
+        <img src="./www/src/img/plus.svg" id="plus-icon" ng-hide="day.instructors[0]"/>
+        <img src="./www/src/img/businessman.svg" id="instructor-icon" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-show="day.instructors[0]"/>
+        <div id="description">
+            {{day.description}}
+        </div>
+        <div class="instructors" ng-show="hover">
+            <div class="arrow-up"></div>
+            <h5 id="instructor" ng-repeat="instructor in day.instructors">{{instructor}}</h5>
+        </div>
+    </div>
+</div>
+
+<!-- Week Bar End -->
+
+<div class="modal">
+    <div class="arrow-up"></div>
+    <!-- <input class="class-dropdown" type="text" placeholder="Lecture Name"> -->
+</div>
